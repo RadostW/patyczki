@@ -26,10 +26,41 @@ def green(x, y, x0, y0, w=1.0):
 
     """
 
-    return (
-        (np.cos(np.pi * (x - x0) / w) - np.cosh(np.pi * (y - y0) / w))
-        * (np.cos(np.pi * (x + x0) / w) - np.cosh(np.pi * (y - y0) / w))
-    ) / (
-        (np.cos(np.pi * (x - x0) / w) - np.cosh(np.pi * (y + y0) / w))
-        * (np.cos(np.pi * (x + x0) / w) - np.cosh(np.pi * (y + y0) / w))
+    return 0.5 * np.log(
+        (
+            (np.cos(np.pi * (x - x0) / w) - np.cosh(np.pi * (y - y0) / w))
+            * (np.cos(np.pi * (x + x0) / w) - np.cosh(np.pi * (y - y0) / w))
+        )
+        / (
+            (np.cos(np.pi * (x - x0) / w) - np.cosh(np.pi * (y + y0) / w))
+            * (np.cos(np.pi * (x + x0) / w) - np.cosh(np.pi * (y + y0) / w))
+        )
+    )
+
+
+def nonsingular_part_green(x, y, w=1.0):
+    """
+    Nonsingular part of the Greens function evaluated at the location of the
+    source. :math:`\lim_{(x,y)\to(x_0,y_0)}G(x,y,x_0,y_0) - 1/2 \log((x-x_0)^2+(y-y_0)^2)`.
+    In other words contributions from reflected sources only evaluated at the original source.
+
+    Parameters
+    ----------
+    x : float
+        x coordinate of sample point
+    y : float
+        y coordinate of sample point
+    w : float, default 1.0
+        *half* width of the strip
+
+    Returns
+    -------
+    float
+        value of the nonsingular component of the Greens function at source.
+
+    """
+
+    return 0.5 * np.log(
+        (np.pi ** 2 * np.sin(np.pi * x / w) ** 2)
+        / (2 * w ** 2 * (np.cosh(2 * np.pi * y / w) - np.cos(2 * np.pi * x / w)))
     )
