@@ -64,3 +64,23 @@ def nonsingular_part_green(x, y, w=1.0):
         (np.pi ** 2 * np.sin(np.pi * x / w) ** 2)
         / (2 * w ** 2 * (np.cosh(2 * np.pi * y / w) - np.cos(2 * np.pi * x / w)))
     )
+
+def singular_part_green(mesh_size):
+    """
+    Singular asymptotic of Greens function evaluated at the location of the
+    source. If the source was smeared on line element of length `mesh_size` then
+    this would be the value of the field in the middle of the line segment.
+
+    Parameters
+    ----------
+    mesh_size : float
+        size of the smear line segment
+
+    Returns
+    -------
+    float
+        value of the regularized Greens function evaluated at the source.
+
+    """
+
+    return 0.5 * (-2 + np.log(mesh_size**2/4))

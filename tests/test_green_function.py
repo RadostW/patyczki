@@ -88,3 +88,13 @@ def test_green_function_singularity_removed_values():
             [2.5, -4.33363],
         ]
     )
+
+    assert np.isclose(result, target, atol=1e-6).all()
+
+def test_green_function_singularity_requilarized():
+    result = patyczki.green_functions.singular_part_green(0.1)
+    target = -3.99573
+    
+    assert np.isclose(result,target, atol=1e-6).all()
+
+
