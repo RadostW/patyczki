@@ -19,6 +19,9 @@ and you'll be good to go.
 Package contents
 ''''''''''''''''
 
+.. automodule:: patyczki.fredholm_solver
+   :members:
+
 .. automodule:: patyczki.green_functions
    :members:
 
