@@ -16,7 +16,7 @@ def green(x, y, x0, y0, w=1.0):
     y0 : float
         y coordinate of point source
     w : float, default 1.0
-        *half* width of the strip
+        width of the strip
 
     Returns
     -------
@@ -51,7 +51,7 @@ def nonsingular_part_green(x, y, w=1.0):
     y : float
         y coordinate of sample point
     w : float, default 1.0
-        *half* width of the strip
+        width of the strip
 
     Returns
     -------
