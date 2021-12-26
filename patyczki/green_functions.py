@@ -42,7 +42,8 @@ def nonsingular_part_green(x, y, w=1.0):
     """
     Nonsingular part of the Greens function evaluated at the location of the
     source. :math:`\lim_{(x,y)\to(x_0,y_0)}G(x,y,x_0,y_0) - 1/2 \log((x-x_0)^2+(y-y_0)^2)`.
-    In other words contributions from reflected sources only evaluated at the original source.
+    In other words contributions from reflected sources only evaluated at the 
+    original source.
 
     Parameters
     ----------
@@ -62,8 +63,14 @@ def nonsingular_part_green(x, y, w=1.0):
 
     return 0.5 * np.log(
         (np.pi ** 2 * np.sin(np.pi * x / w) ** 2)
-        / (2 * w ** 2 * (np.cosh(2 * np.pi * y / w) - np.cos(2 * np.pi * x / w)))
+        / (
+            2
+            * w ** 2
+            * np.sinh(np.pi * y / w) ** 2
+            * (np.cosh(2 * np.pi * y / w) - np.cos(2 * np.pi * x / w))
+        )
     )
+
 
 def singular_part_green(mesh_size):
     """
@@ -83,4 +90,4 @@ def singular_part_green(mesh_size):
 
     """
 
-    return 0.5 * (-2 + np.log(mesh_size**2/4))
+    return 0.5 * (-2 + np.log(mesh_size ** 2 / 4))
