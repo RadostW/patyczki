@@ -1,6 +1,5 @@
 import numpy as np
 
-
 def green(x, y, x0, y0, w=1.0):
     """
     Greens function to Laplaces equation in semi-infinite strip, with reflective
